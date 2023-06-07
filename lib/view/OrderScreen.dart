@@ -7,7 +7,7 @@ class OrderScreen extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: Center(child: Text('Sign Up')),
+            title: Center(child: Text('')),
             bottom: TabBar(
               tabs: [
                 Tab(
@@ -24,6 +24,9 @@ class OrderScreen extends StatelessWidget {
           ),
           body: TabBarView(children: [
 
+            Center(child: Text( 'Pending',)),
+            Center(child: Text( 'Underway',)),
+            Center(child: Text( 'Completed',))
           ]),
         ));
   }

@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:home_service_flutter/view/SplashScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserScreen extends StatelessWidget {
+  Future<void> _clearToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? checkUserLogin = await prefs.getString('token');
+    if (checkUserLogin == "") {
+      Fluttertoast.showToast(msg: "you're not authorized ");
+    } else {
+      await prefs.setString('token', "");
+      Get.off(SplashScreen());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +52,11 @@ class UserScreen extends StatelessWidget {
                           padding: EdgeInsets.only(top: 50.0),
                           child: Text(
                             "Mohammed Hamad Mushtaha",
-                            style: GoogleFonts.pacifico(
+                            style: GoogleFonts.poppins(
                               fontSize: 18.0,
                               color: Colors.black,
-
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ],
@@ -82,7 +97,7 @@ class UserScreen extends StatelessWidget {
                           Expanded(
                             child: Text(
                               "Language",
-                              style: GoogleFonts.pacifico(
+                              style: GoogleFonts.poppins(
                                 fontSize: 14.0,
                                 color: Colors.black,
                               ),
@@ -106,7 +121,7 @@ class UserScreen extends StatelessWidget {
                           Expanded(
                             child: Text(
                               "My Rates",
-                              style: GoogleFonts.pacifico(
+                              style: GoogleFonts.poppins(
                                 fontSize: 14.0,
                                 color: Colors.black,
                               ),
@@ -130,7 +145,7 @@ class UserScreen extends StatelessWidget {
                           Expanded(
                             child: Text(
                               "Contact us",
-                              style: GoogleFonts.pacifico(
+                              style: GoogleFonts.poppins(
                                 fontSize: 14.0,
                                 color: Colors.black,
                               ),
@@ -154,7 +169,7 @@ class UserScreen extends StatelessWidget {
                           Expanded(
                             child: Text(
                               "Share App",
-                              style: GoogleFonts.pacifico(
+                              style: GoogleFonts.poppins(
                                 fontSize: 14.0,
                                 color: Colors.black,
                               ),
@@ -188,21 +203,21 @@ class UserScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: TextButton(
                           onPressed: () {
-                            // Handle sign out logic here
+                            _clearToken();
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
                                 "SIGN OUT",
-                                style: GoogleFonts.pacifico(
+                                style: GoogleFonts.poppins(
                                   fontSize: 18.0,
                                   color: Colors.black,
                                 ),
                               ),
                               Icon(
                                 Icons.exit_to_app,
-                                color: Colors.red,
+                                color: Colors.redAccent,
                               ),
                             ],
                           ),
@@ -214,7 +229,7 @@ class UserScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 50.0,
+              top: 70.0,
               left: 0.0,
               right: 0.0,
               child: Align(
@@ -223,17 +238,15 @@ class UserScreen extends StatelessWidget {
                   width: 120.0,
                   height: 120.0,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     border: Border.all(
                       width: 4.0,
-                      color: Color(0xff6FC8FB),
+                      color: Colors.white70,
                     ),
                   ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      'images/user_avater_icon.png',
-                      fit: BoxFit.fill,
-                    ),
+                  child: Image.asset(
+                    'images/user_avater_icon.png',
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),

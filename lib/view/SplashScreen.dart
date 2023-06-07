@@ -4,7 +4,6 @@ import 'package:home_service_flutter/main.dart';
 import 'package:home_service_flutter/view/HomeScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../PreferenceManager.dart';
 import 'OnBoardingScreen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,14 +21,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigateToScreen() async {
-    // Delay for 2.5 seconds
+
     await Future.delayed(Duration(milliseconds: 2500));
 
-    // Retrieve the token from SharedPreferences
     final token = await _getTokenFromSharedPreferences();
 
-    if (token != null) {
-      // Token exists, navigate to the home screen
+    if (token!="") {
+
       Get.offAll(HomeScreen());
     } else {
 

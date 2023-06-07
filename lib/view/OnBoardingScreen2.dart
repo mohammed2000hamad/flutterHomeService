@@ -17,7 +17,7 @@ class OnBoardingScreen2 extends StatelessWidget {
             Image.asset(
               'images/onbording_image.png',
               width: double.infinity,
-              height: 250,
+              height: 280,
               fit: BoxFit.fill,
               alignment: Alignment.bottomCenter,
               semanticLabel: 'onBoardingImage2',
@@ -28,20 +28,25 @@ class OnBoardingScreen2 extends StatelessWidget {
             ),
             SizedBox(height: 80),
             Text(
+
               'Prestige and Absolute Security',
-              style: GoogleFonts.pacifico(
-                fontSize: 23,
+              style: GoogleFonts.poppins(
+                fontSize: 14,
                 color: Color(0xffFFC400),
+
               ),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             Center(
               child: Text(
                 'Fast reservation with technicians and craftsmen',
-                style: GoogleFonts.pacifico(
-                  fontSize: 23,
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
                   color: Color(0xff0E9CF9),
                 ),
+                textAlign: TextAlign.center,
+
               ),
             ),
             SizedBox(height: 50),
@@ -49,25 +54,24 @@ class OnBoardingScreen2 extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Get.offAll(OnBoardingScreen3());
+                  Get.off(OnBoardingScreen3());
                 },
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Color(0xff346EDF),
+                  foregroundColor: Colors.white, primary: Color(0xff346EDF),
                   padding: EdgeInsets.all(8),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 child: Container(
                   width: double.infinity,
-                  height: 64,
+                  height: 36,
                   alignment: Alignment.center,
                   child: Text(
                     'Next',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Cursive',
+                    style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        color: Colors.white
                     ),
                   ),
                 ),

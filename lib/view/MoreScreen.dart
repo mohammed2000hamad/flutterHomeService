@@ -29,7 +29,7 @@ class MoreScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   'More',
-                  style: GoogleFonts.pacifico(
+                  style: GoogleFonts.poppins(
                     fontSize: 18,
                     color: Colors.white,
                   ),
@@ -43,7 +43,7 @@ class MoreScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'Change Password',
-                      style: GoogleFonts.pacifico(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.black,
                       ),
@@ -64,7 +64,7 @@ class MoreScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       "FAQ's",
-                      style: GoogleFonts.pacifico(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.black,
                       ),
@@ -87,7 +87,7 @@ class MoreScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'About App',
-                      style: GoogleFonts.pacifico(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.black,
                       ),
@@ -110,7 +110,7 @@ class MoreScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'Terms & Conditions',
-                      style: GoogleFonts.pacifico(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.black,
                       ),
@@ -133,7 +133,7 @@ class MoreScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'Privacy Policy',
-                      style: GoogleFonts.pacifico(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.black,
                       ),

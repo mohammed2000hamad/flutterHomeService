@@ -16,7 +16,7 @@ class OnBoardingScreen extends StatelessWidget {
             Image.asset(
               'images/mobile_application_call_taxi.png',
               width: double.infinity,
-              height: 150,
+              height: 250,
               fit: BoxFit.fill,
               alignment: Alignment.bottomCenter,
               semanticLabel: 'onBoardingImage',
@@ -27,9 +27,10 @@ class OnBoardingScreen extends StatelessWidget {
             ),
             SizedBox(height: 80),
             Text(
+              textAlign: TextAlign.center,
               'Fast reservation with technicians and craftsmen',
-              style: GoogleFonts.pacifico(
-                fontSize: 23,
+              style: GoogleFonts.poppins(
+                fontSize: 14,
                 color: Color(0xff0E9CF9),
               ),
             ),
@@ -41,22 +42,21 @@ class OnBoardingScreen extends StatelessWidget {
                   Get.off(OnBoardingScreen2());
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xff346EDF),
-                  onPrimary: Colors.white,
+                  foregroundColor: Colors.white, primary: Color(0xff346EDF),
                   padding: EdgeInsets.all(8),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 child: Container(
                   width: double.infinity,
-                  height: 64,
+                  height: 36,
                   alignment: Alignment.center,
                   child: Text(
                     'Next',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 16,
-                      fontFamily: 'Cursive',
+                      color: Colors.white
                     ),
                   ),
                 ),

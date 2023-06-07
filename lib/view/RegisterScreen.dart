@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service_flutter/view/LoginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../backend/AllWorkController.dart';
 import '../backend/UserController.dart';
+import '../model/WorkModel.dart';
 import 'HomeScreen.dart';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
@@ -40,8 +45,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final name = fullNameController.text;
 
     try {
-      final user = await _userController.registerUser(
-          name, email, password, phone);
+      final user =
+          await _userController.registerUser(name, email, password, phone);
 
       if (user != null) {
         final token = user.token;
@@ -60,8 +65,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
     ;
   }
 
+  List<WorkModel> _works = [];
+  final AllWorkController _workController = AllWorkController();
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchWorks(); // Call the function to fetch works data
+  }
+
+  Future<void> _fetchWorks() async {
+    try {
+      final works = await _workController.apiService.getAllWorks();
+      setState(() {
+        _works = works;
+      });
+    } catch (e) {
+      print('Failed to fetch works: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    var work = <String>[];
+    for (int x = 0; x < _works.length; x++) {
+      work.add(_works[x].name);
+    }
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -92,18 +121,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                     ),
                   ),
@@ -116,18 +145,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                     ),
                   ),
@@ -140,18 +169,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                     ),
                   ),
@@ -165,46 +194,53 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                     ),
                   ),
                   SizedBox(height: 16.0),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: rememberMe,
-                        onChanged: (newValue) {
-                          setState(() {
-                            rememberMe = newValue ?? false;
-                          });
-                        },
-                      ),
-                      Text('I Read and Accept', style: TextStyle(fontSize: 8)),
-                      TextButton(
-                        onPressed: () {
-                          // Handle Home Service Terms & Conditions button tap
-                        },
-                        child: Text(
-                          'Home Service Terms & Conditions',
-                          style: TextStyle(
-                            fontSize: 6,
-                            color: Colors.blue,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      width: double.infinity,
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: rememberMe,
+                            onChanged: (newValue) {
+                              setState(() {
+                                rememberMe = newValue ?? false;
+                              });
+                            },
                           ),
-                        ),
+                          Text('I Read and Accept',
+                              style: TextStyle(fontSize: 8)),
+                          TextButton(
+                            onPressed: () {
+                              // Handle Home Service Terms & Conditions button tap
+                            },
+                            child: Text(
+                              'Home Service Terms & Conditions',
+                              style: TextStyle(
+                                fontSize: 6,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                   SizedBox(height: 16.0),
                   Row(
@@ -212,7 +248,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Have Account?'),
+                          Text(
+                            'Have Account?',
+                            style: GoogleFonts.poppins(fontSize: 10),
+                          ),
                           TextButton(
                             onPressed: () {
                               Get.off(LoginScreen());
@@ -234,7 +273,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                           // Perform registration logic
                         },
-                        child: Text('Register'),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('Register',
+                              style: GoogleFonts.poppins(fontSize: 10)),
+                        ),
                       ),
                     ],
                   ),
@@ -253,18 +296,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                     ),
                   ),
@@ -277,18 +320,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                     ),
                   ),
@@ -301,18 +344,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                     ),
                   ),
@@ -326,18 +369,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide:
-                        BorderSide(color: Color(0xff346EDF), width: 1.0),
+                            BorderSide(color: Color(0xff346EDF), width: 1.0),
                       ),
                     ),
                   ),
@@ -348,14 +391,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hint: selectedService == null
                           ? Text('Dropdown')
                           : Text(
-                        selectedService,
-                        style: TextStyle(color: Colors.blue),
-                      ),
+                              selectedService,
+                              style: TextStyle(color: Colors.blue),
+                            ),
                       isExpanded: true,
                       iconSize: 30.0,
                       style: TextStyle(color: Colors.blue),
-                      items: ['One', 'Two', 'Three'].map(
-                            (val) {
+                      items: work.map(
+                        (val) {
                           return DropdownMenuItem<String>(
                             value: val,
                             child: Text(val),
@@ -364,7 +407,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ).toList(),
                       onChanged: (String? val) {
                         setState(
-                              () {
+                          () {
                             selectedService = val!;
                           },
                         );
@@ -403,18 +446,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Have Account?'),
+                          Text(
+                            'Have Account?',
+                            style: GoogleFonts.poppins(fontSize: 10),
+                          ),
                           TextButton(
                             onPressed: () {
                               Get.off(LoginScreen());
                             },
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.blue,
-                              ),
-                            ),
+                            child: Text('Login',
+                                style: GoogleFonts.poppins(fontSize: 10)),
                           ),
                         ],
                       ),
@@ -423,7 +464,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         onPressed: () {
                           // Perform registration logic
                         },
-                        child: Text('Register'),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text('Register',
+                              style: GoogleFonts.poppins(fontSize: 10)),
+                        ),
                       ),
                     ],
                   ),

@@ -9,7 +9,6 @@ class UserController {
   Future<User> loginUser(String email, String password) async {
     try {
       final user = await apiService.loginUser(email, password);
-      // Add any additional logic here
       return user;
     } catch (e) {
       debugPrint('Error: $e');
@@ -20,7 +19,6 @@ class UserController {
   Future<User> registerUser(String name, String email, String password,String phone) async {
     try {
       final user = await apiService.registerUser(name, email, password,phone);
-      // Add any additional logic here
       return user;
     } catch (e) {
       debugPrint('Error: $e');

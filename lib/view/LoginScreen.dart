@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service_flutter/view/RegisterScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -83,18 +84,32 @@ class LoginScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: ListView(
                 children: [
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        labelStyle: GoogleFonts.poppins(
+                          fontSize: 12,
+
+                        )
+                      ),
                     ),
                   ),
                   SizedBox(height: 16.0),
-                  TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: GoogleFonts.poppins(
+                        fontSize: 12,
+
+                      ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 16.0),
@@ -121,41 +136,48 @@ class LoginScreen extends StatelessWidget {
                           'Forgot Password?',
                           style: TextStyle(
                             color: Colors.blue,
+                            fontSize: 10
                           ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 16.0),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('New Member?'),
-                          TextButton(
-                            onPressed: () {
-                              Get.off(RegisterScreen());
-                            },
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: Colors.blue,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('New Member?'),
+                            TextButton(
+                              onPressed: () {
+                                Get.off(RegisterScreen());
+                              },
+                              child: Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Spacer(),
-                      ElevatedButton(
-                        onPressed: () {
-                          _login();
+                          ],
+                        ),
+                        Spacer(),
+                        ElevatedButton(
+                          onPressed: () {
+                            _login();
 
-                          // Perform login logic
-                        },
-                        child: Text('Login'),
-                      ),
-                    ],
+                            // Perform login logic
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text('Login'),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Spacer(),
                   Padding(
@@ -185,22 +207,37 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ListView(
                 children: [
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                          labelText: 'Email',
+                          labelStyle: GoogleFonts.poppins(
+                            fontSize: 12,
+
+                          )
+                      ),
                     ),
                   ),
                   SizedBox(height: 16.0),
-                  TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: GoogleFonts.poppins(
+                          fontSize: 12,
+
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 16.0),
@@ -226,67 +263,79 @@ class LoginScreen extends StatelessWidget {
                         child: Text(
                           'Forgot Password?',
                           style: TextStyle(
-                            color: Colors.blue,
+                              color: Colors.blue,
+                              fontSize: 10
                           ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 16.0),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('New Member?'),
-                          TextButton(
-                            onPressed: () {
-                              // Handle Sign Up button tap
-                            },
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: Colors.blue,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('New Member?'),
+                            TextButton(
+                              onPressed: () {
+                                Get.off(RegisterScreen());
+                              },
+                              child: Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                ),
                               ),
                             ),
+                          ],
+                        ),
+                        Spacer(),
+                        ElevatedButton(
+                          onPressed: () {
+                            _login();
+
+                            // Perform login logic
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text('Login'),
                           ),
-                        ],
-                      ),
-                      Spacer(),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Handle Login button tap
-                          final email = emailController.text;
-                          final password = passwordController.text;
-                          // Perform login logic
-                        },
-                        child: Text('Login'),
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                   Spacer(),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16.0, 80.0, 16.0, 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Get Started Now',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                    child: TextButton(
+                      onPressed: () {
+                        Get.off(HomeScreen());
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Get Started Now',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward,
-                        ),
-                      ],
+                          Icon(
+                            Icons.arrow_forward,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
+
           ],
         ),
       ),
